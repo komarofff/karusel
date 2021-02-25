@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://komaroff.biz/0-verstka/karusel/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .okno {
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: 100px;
+            padding: 20px;
+            box-shadow: 0 0 10px #ccc;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .strelka {
+		margin-top: 30px;
+            min-width: 40px;
+            height: 40px;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 50%;
+            color: white;
+            background-color: rgb(0, 26, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .none {
+            display: none;
+        }
+        
+        .tabl {
+            display: table;
+            width: 50px;
+            padding: 10px;
+        }
+        
+        #kart img {
+            height: 50px;
+            padding: 10px;
+            box-shadow: 0 0 5px #ccc;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 class="center">КАРУСЕЛЬ</h1>
+
+    <div id="kart" class="okno">
+        <span class="strelka" onclick="Karusel1()"> &lt; </span>
+
+        <img id="k1" class="tabl" src="./index_files/c1.png" alt="Картинка small1">
+        <img id="k2" class="tabl" src="./index_files/c2.png" alt="Картинка small1">
+        <img id="k3" class="tabl" src="./index_files/c3.png" alt="Картинка small1">
+        <img id="k4" class="tabl" src="./index_files/c4.png" alt="Картинка small1">
+        <img id="k5" class="none" src="./index_files/c5.png" alt="Картинка small1">
+        <img id="k6" class="none" src="./index_files/c6.png" alt="Картинка small1">
+        <img id="k7" class="none" src="./index_files/c7.png" alt="Картинка small1">
+        <img id="k8" class="none" src="./index_files/c8.png" alt="Картинка small1">
+
+        <span class="strelka" onclick="Karusel2()"> &gt; </span>
+    </div>
+
+
+    <p id="pokaz"></p>
+
+    <script>
+        col_kart = 4; //количество картинок которые видны
+        let elems = kart.getElementsByTagName('*');
+        let n = 1;
+        for (let i = 0; i < elems.length; i++) {
+            let idelem = elems[i].id;
+            if (idelem != "") {
+
+                if (n > col_kart) { //
+                    document.getElementById(idelem).className = "none";
+                } else {
+                    document.getElementById(idelem).className = "tabl";
+                }
+                n++;
+            }
+
+        }
+        // перемещение влево
+        function Karusel1() {
+
+            let karus1 = kart.getElementsByTagName('*');
+            let id_left = 0;
+            let id_right = 0;
+            let arr = [];
+            let arr1 = [];
+            for (let i = 1; i < (karus1.length - 1); i++) {
+                if (karus1[i].className == "tabl") {
+                    arr.push(karus1[i].id);
+                    arr1.push(i);
+                }
+            }
+            let dlina_arr1 = arr1.length - 1;
+            let num_left = arr1[0] - 1;
+            if (num_left < 1) {
+                num_left = 1;
+            }
+            let num_right = num_left + col_kart;
+            if (num_right >= karus1.length) {
+                num_right = karus1.length + 1;
+            }
+            id_left = karus1[num_left].id;
+            id_right = karus1[num_right].id;
+            document.getElementById(id_left).className = "tabl";
+            document.getElementById(id_right).className = "none";
+        }
+
+        // перемещение вправо
+        function Karusel2() {
+
+            let karus1 = kart.getElementsByTagName('*');
+            let id_left = 0;
+            let id_right = 0;
+            let m2 = 0;
+            for (let i = 1; i < (karus1.length - 1); i++) {
+
+                if (karus1[i].className == "none" && m2 == 0 && i > col_kart) {
+
+                    id_right = karus1[i].id;
+                    num_left = i - col_kart;
+                    id_left = karus1[num_left].id
+
+                    m2 = 1;
+                    document.getElementById(id_left).className = "none";
+                    document.getElementById(id_right).className = "tabl";
+                }
+            }
+
+        }
+    </script>
+
+
+
+</body></html>
