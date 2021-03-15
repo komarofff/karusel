@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!-- saved from url=(0038)http://komaroff.biz/0-verstka/karusel/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -22,7 +25,7 @@
         }
         
         .strelka {
-		margin-top: 30px;
+            margin-top: 30px;
             min-width: 40px;
             height: 40px;
             font-size: 25px;
@@ -44,6 +47,7 @@
             display: table;
             width: 50px;
             padding: 10px;
+            transition: 1.5s linear;
         }
         
         #kart img {
@@ -98,6 +102,7 @@
         function Karusel1() {
 
             let karus1 = kart.getElementsByTagName('*');
+
             let id_left = 0;
             let id_right = 0;
             let arr = [];
@@ -119,6 +124,8 @@
             }
             id_left = karus1[num_left].id;
             id_right = karus1[num_right].id;
+
+
             document.getElementById(id_left).className = "tabl";
             document.getElementById(id_right).className = "none";
         }
@@ -149,4 +156,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>
