@@ -1,161 +1,130 @@
 <!DOCTYPE html>
-<!-- saved from url=(0038)http://komaroff.biz/0-verstka/karusel/ -->
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>КАРУСЕЛЬ</title>
     <style>
-        .okno {
-            margin-left: auto;
-            margin-right: auto;
-            width: 500px;
-            height: 100px;
-            padding: 20px;
-            box-shadow: 0 0 10px #ccc;
-            display: flex;
-            justify-content: space-around;
+        .container {
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            width: 960px;
+            height: auto;
+            overflow: hidden;
         }
         
-        .center {
-            text-align: center;
+        .arrows {
+            margin: 0 auto;
+            width: 960px;
+            height: 25px;
         }
         
-        .strelka {
-            margin-top: 30px;
-            min-width: 40px;
-            height: 40px;
-            font-size: 25px;
-            font-weight: bold;
-            border-radius: 50%;
-            color: white;
-            background-color: rgb(0, 26, 255);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .arrows span {
+            float: right;
+        }
+        
+        .left,
+        .right {
             cursor: pointer;
+            padding: 2px 2px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
         }
         
-        .none {
-            display: none;
+        .karusel {
+            transition: 0.5s linear;
+            display: flex;
+            flex-wrap: nowrap;
         }
         
-        .tabl {
-            display: table;
-            width: 50px;
-            padding: 10px;
-            transition: 1.5s linear;
-        }
-        
-        #kart img {
-            height: 50px;
-            padding: 10px;
-            box-shadow: 0 0 5px #ccc;
-            margin: 10px;
+        .karusel img {
+            height: 250px;
+            width: 310px;
+            margin: 10px 5px;
+            border: 1px solid #ccc;
         }
     </style>
-
 </head>
 
 <body>
-    <h1 class="center">КАРУСЕЛЬ</h1>
+    <div class="arrows">
+        <span class="right" id="right">></span>
+        <span class="left" id="left"><</span>
 
-    <div id="kart" class="okno">
-        <span class="strelka" onclick="Karusel1()"> &lt; </span>
-
-        <img id="k1" class="tabl" src="images/c1.png" alt="Картинка small1">
-        <img id="k2" class="tabl" src="images/c2.png" alt="Картинка small1">
-        <img id="k3" class="tabl" src="images/c3.png" alt="Картинка small1">
-        <img id="k4" class="tabl" src="images/c4.png" alt="Картинка small1">
-        <img id="k5" class="none" src="images/c5.png" alt="Картинка small1">
-        <img id="k6" class="none" src="images/c6.png" alt="Картинка small1">
-        <img id="k7" class="none" src="images/c7.png" alt="Картинка small1">
-        <img id="k8" class="none" src="images/c8.png" alt="Картинка small1">
-
-        <span class="strelka" onclick="Karusel2()"> &gt; </span>
     </div>
+    <div class="container">
+
+        <div class="karusel" id="karusel1">
+            <img src="images/1.jpg" alt=" ">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt=" ">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt=" ">
+            <img src="images/6.jpg" alt="">
+            <img src="images/7.jpg" alt=" ">
+            <img src="images/8.jpg" alt="">
+            <img src="images/9.jpg" alt=" ">
+            <img src="images/10.jpg" alt="">
+            <img src="images/11.jpg" alt=" ">
 
 
-    <p id="pokaz"></p>
 
+        </div>
+    </div>
     <script>
-        col_kart = 4; //количество картинок которые видны
-        let elems = kart.getElementsByTagName('*');
-        let n = 1;
-        for (let i = 0; i < elems.length; i++) {
-            let idelem = elems[i].id;
-            if (idelem != "") {
+        shir = 320; // ширина картинки+ отступ
+        cart = 3; // сколько картинок показываем
+        let x = shir; // на сколько сдвинуть по оси x
+        n = 0;
+        x2 = 0;
+        let sdvig = 0;
+        let sdvig2 = 0;
 
-                if (n > col_kart) { //
-                    document.getElementById(idelem).className = "none";
-                } else {
-                    document.getElementById(idelem).className = "tabl";
-                }
-                n++;
+        console.log("start | x=" + x + " x2=" + x2 + " n==" + n);
+
+        images = document.querySelectorAll(".karusel img");
+        kol_kart = images.length;
+        left.addEventListener("click", function() {
+            if (sdvig != 0) x += sdvig;
+            // возвращаем назад 
+            // if (n == (kol_kart - cart)) {
+            //     x = 0;
+            //     n = -1;
+            //     sdvig = 0;
+            // } 
+
+            // останавливаем 
+            if (n == (kol_kart - cart)) {
+                x -= sdvig;
+                n--;
+                sdvig = 0;
             }
+            karusel1.style.transform = 'translateX(' + -x + 'px)';
+            sdvig = shir;
+            n++;
+            // console.log("left | x=" + x + " x2=" + x2 + " n==" + n);
+        })
 
-        }
-        // перемещение влево
-        function Karusel1() {
+        right.addEventListener("click", function() {
 
-            let karus1 = kart.getElementsByTagName('*');
+            x2 = -x + shir;
+            x = -(x2);
 
-            let id_left = 0;
-            let id_right = 0;
-            let arr = [];
-            let arr1 = [];
-            for (let i = 1; i < (karus1.length - 1); i++) {
-                if (karus1[i].className == "tabl") {
-                    arr.push(karus1[i].id);
-                    arr1.push(i);
-                }
+            if (x == 0 && x2 == 0) {
+                x = shir;
+                x2 = 0;
+                n = 0;
+                sdvig = 0;
             }
-            let dlina_arr1 = arr1.length - 1;
-            let num_left = arr1[0] - 1;
-            if (num_left < 1) {
-                num_left = 1;
+            karusel1.style.transform = 'translateX(' + x2 + 'px)';
+            n--;
+            if (n < 0) {
+                n = 0;
             }
-            let num_right = num_left + col_kart;
-            if (num_right >= karus1.length) {
-                num_right = karus1.length + 1;
-            }
-            id_left = karus1[num_left].id;
-            id_right = karus1[num_right].id;
-
-
-            document.getElementById(id_left).className = "tabl";
-            document.getElementById(id_right).className = "none";
-        }
-
-        // перемещение вправо
-        function Karusel2() {
-
-            let karus1 = kart.getElementsByTagName('*');
-            let id_left = 0;
-            let id_right = 0;
-            let m2 = 0;
-            for (let i = 1; i < (karus1.length - 1); i++) {
-
-                if (karus1[i].className == "none" && m2 == 0 && i > col_kart) {
-
-                    id_right = karus1[i].id;
-                    num_left = i - col_kart;
-                    id_left = karus1[num_left].id
-
-                    m2 = 1;
-                    document.getElementById(id_left).className = "none";
-                    document.getElementById(id_right).className = "tabl";
-                }
-            }
-
-        }
+            // console.log("right | x=" + x + " x2=" + x2 + " n==" + n);
+        })
     </script>
-
-
-
 </body>
 
 </html>
