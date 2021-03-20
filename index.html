@@ -10,8 +10,9 @@
             margin: 0 auto;
             border: 1px solid #ccc;
             width: 960px;
-            height: auto;
+            height: 270px;
             overflow: hidden;
+            display: block;
         }
         
         .arrows {
@@ -34,13 +35,15 @@
         
         .karusel {
             transition: 0.5s linear;
-            display: flex;
-            flex-wrap: nowrap;
+            /* display: flex;
+            flex-wrap: nowrap; */
+            min-width: 1000%;
+            display: inline-table;
         }
         
         .karusel img {
             height: 250px;
-            min-width: 310px;
+            width: 310px;
             margin: 10px 4px;
             border: 1px solid #ccc;
         }
@@ -76,25 +79,53 @@
         shir = 320; // ширина картинки+ отступ
         cart = 3; // сколько картинок показываем
         let x = shir; // на сколько сдвинуть по оси x
-        n = 0; x2 = 0; let sdvig = 0;  let sdvig2 = 0;
+        n = 0;
+        x2 = 0;
+        let sdvig = 0;
+        let sdvig2 = 0;
+
+        console.log("start | x=" + x + " x2=" + x2 + " n==" + n);
+
         images = document.querySelectorAll(".karusel img");
         kol_kart = images.length;
         left.addEventListener("click", function() {
-            if (sdvig != 0) x += sdvig;            
+            if (sdvig != 0) x += sdvig;
             // возвращаем назад 
-            // if (n == (kol_kart - cart)) {x = 0; n = -1;sdvig = 0;}             
+            // if (n == (kol_kart - cart)) {
+            //     x = 0;
+            //     n = -1;
+            //     sdvig = 0;
+            // } 
+
             // останавливаем 
-            if (n == (kol_kart - cart)) {x -= sdvig; n--; sdvig = 0;}
+            if (n == (kol_kart - cart)) {
+                x -= sdvig;
+                n--;
+                sdvig = 0;
+            }
             karusel1.style.transform = 'translateX(' + -x + 'px)';
-            sdvig = shir; n++;            
+            sdvig = shir;
+            n++;
+            
         })
+
         right.addEventListener("click", function() {
+
             x2 = -x + shir;
             x = -(x2);
-            if (x == 0 && x2 == 0) { x = shir; x2 = 0;  n = 0; sdvig = 0;}
+
+            if (x == 0 && x2 == 0) {
+                x = shir;
+                x2 = 0;
+                n = 0;
+                sdvig = 0;
+            }
             karusel1.style.transform = 'translateX(' + x2 + 'px)';
             n--;
-            if (n < 0) {n = 0;}            
+            if (n < 0) {
+                n = 0;
+            }
+            
         })
     </script>
 </body>
