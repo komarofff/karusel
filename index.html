@@ -10,14 +10,14 @@
             margin: 0 auto;
             border: 1px solid #ccc;
             width: 960px;
-            height: 270px;
+            height: 300px;
             overflow: hidden;
             display: block;
         }
         
         .arrows {
             margin: 0 auto;
-            width: 960px;
+            width: 940px;
             height: 25px;
         }
         
@@ -51,13 +51,13 @@
 </head>
 
 <body>
-    <div class="arrows">
-        <span class="right" id="right">></span>
-        <span class="left" id="left"><</span>
-
-    </div>
+    
     <div class="container">
-
+        <div class="arrows">
+            <span class="right" id="right">></span>
+            <span class="left" id="left"><</span>
+    
+        </div>
         <div class="karusel" id="karusel1">
             <img src="images/1.jpg" alt=" ">
             <img src="images/2.jpg" alt="">
@@ -76,6 +76,7 @@
         </div>
     </div>
     <script>
+        zz=0;
         shir = 320; // ширина картинки+ отступ
         cart = 3; // сколько картинок показываем
         let x = shir; // на сколько сдвинуть по оси x
@@ -85,45 +86,43 @@
         let sdvig2 = 0;
         images = document.querySelectorAll(".karusel img");
         kol_kart = images.length;
-        left.addEventListener("click", function() {
-            if (sdvig != 0) x += sdvig;
-            // возвращаем назад 
-            // if (n == (kol_kart - cart)) {
-            //     x = 0;
-            //     n = -1;
-            //     sdvig = 0;
-            // } 
 
-            // останавливаем 
+        left.addEventListener("click", Left);
+       
+        //
+        left.addEventListener("mousedown", (downe) => {
+        if (downe.button !== 0) return;
+         const interval = setInterval(Left, 500);
+        
+            left.addEventListener("mouseup", (upe) => {
+        if (upe.button === 0) clearInterval(interval);
+        }, true, true);
+        });
+
+        //
+       
+
+        right.addEventListener("click", Right);
+
+        function Left() {
+            if (sdvig != 0) x += sdvig;
             if (n == (kol_kart - cart)) {
-                x -= sdvig;
-                n--;
-                sdvig = 0;
+                x -= sdvig;n--; sdvig = 0;
             }
             karusel1.style.transform = 'translateX(' + -x + 'px)';
-            sdvig = shir;
-            n++;
+            sdvig = shir; n++;
             
-        })
+        }
 
-        right.addEventListener("click", function() {
-
-            x2 = -x + shir;
-            x = -(x2);
-
-            if (x == 0 && x2 == 0) {
-                x = shir;
-                x2 = 0;
-                n = 0;
-                sdvig = 0;
-            }
-            karusel1.style.transform = 'translateX(' + x2 + 'px)';
-            n--;
-            if (n < 0) {
-                n = 0;
-            }
-            
-        })
+        function Right() {
+        x2 = -x + shir;  x = -(x2);
+        if (x == 0 && x2 == 0) {
+            x = shir; x2 = 0;  n = 0; sdvig = 0;
+        }
+        karusel1.style.transform = 'translateX(' + x2 + 'px)';
+        n--;
+        if (n < 0) { n = 0; }
+        }
     </script>
 </body>
 
