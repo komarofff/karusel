@@ -11,7 +11,7 @@
             border: 1px solid #ccc;
             width: 960px;
             height: 330px;
-            overflow: hidden;
+            /* overflow: hidden; */
             display: block;
         }
         
@@ -132,27 +132,36 @@
         })
         poi_arr = points.querySelectorAll("input");
         //end points
+        proverka = 0;
 
         function Left(id_kart) {
 
             if (sdvig != 0) x += sdvig;
             if (n == (kol_kart - cart)) {
-                x -= sdvig;
-                n--;
-                sdvig = 0;
+                proverka = 1;
+                n = -1;
+                x = 0;
+                x2 = 0;
+                sdvig = -shir;
+                sdvig2 = 0;
             }
             karusel1.style.transform = 'translateX(' + -x + 'px)';
 
-            z = n;
-            id_first = `p${z}`;
-            document.getElementById(id_first).checked = false;
-            // if (++z > (kol_kart - cart)) z = (kol_kart - cart);
-            id_second = `p${z+1}`;
-            document.getElementById(id_second).checked = true;
-
+            if (n >= 0) {
+                z = n;
+                id_first = `p${z}`;
+                document.getElementById(id_first).checked = false;
+                id_second = `p${z+1}`;
+                document.getElementById(id_second).checked = true;
+            } else {
+                z = 0;
+                id_first = `p${z}`;
+                document.getElementById(id_first).checked = true;
+                id_second = `p${z+1}`;
+                document.getElementById(id_second).checked = false;
+            }
             sdvig = shir;
             n++;
-
         }
 
         function Right(id_kart) {
@@ -161,19 +170,33 @@
             if (x == 0 && x2 == 0) {
                 x = shir;
                 x2 = 0;
-                n = 0;
-                sdvig = 0;
+                n = (kol_kart - cart);
+
+                x2 = -(shir * (kol_kart - cart));
             }
+
+            // if (x == 0 && x2 == 0) {
+            //     x = shir;
+            //     x2 = 0;
+            //     n = 0;
+            //     sdvig = 0;
+            // }
             karusel1.style.transform = 'translateX(' + x2 + 'px)';
 
-            z2 = n;
-            id_first = `p${z2}`;
-            document.getElementById(id_first).checked = false;
-            // if (--z < 1) z = 1;
-            z3 = z2 - 1;
-            if (z3 < 0) z3 = 0;
-            id_second = `p${z3}`;
-            document.getElementById(id_second).checked = true;
+            if (n > 0) {
+                z2 = n;
+                z3 = n + 1;
+                id_first = `p${z2}`;
+                document.getElementById(id_first).checked = false;
+                id_second = `p${z3}`;
+                document.getElementById(id_second).checked = true;
+            } else {
+                z2 = 0;
+                id_first = `p${z2}`;
+                document.getElementById(id_first).checked = true;
+                id_second = `p${z2+1}`;
+                document.getElementById(id_second).checked = false;
+            }
 
             n--;
             if (n < 0) {
