@@ -51,12 +51,12 @@
 </head>
 
 <body>
-    
+
     <div class="container">
         <div class="arrows">
             <span class="right" id="right">></span>
             <span class="left" id="left"><</span>
-    
+
         </div>
         <div class="karusel" id="karusel1">
             <img src="images/1.jpg" alt=" ">
@@ -76,7 +76,7 @@
         </div>
     </div>
     <script>
-        zz=0;
+        zz = 0;
         shir = 320; // ширина картинки+ отступ
         cart = 3; // сколько картинок показываем
         let x = shir; // на сколько сдвинуть по оси x
@@ -88,40 +88,50 @@
         kol_kart = images.length;
 
         left.addEventListener("click", Left);
-       
-        //
-        // left.addEventListener("mousedown", (downe) => {
-        // if (downe.button !== 0) return;
-        //  const interval = setInterval(Left, 500);
-        
-        //     left.addEventListener("mouseup", (upe) => {
-        // if (upe.button === 0) clearInterval(interval);
-        // }, true, true);
-        // });
-
-        //
-       
+        left.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            interval = setInterval(Left, 100);
+            left.addEventListener("mouseup", (upe) => {
+                if (upe.button === 0) clearInterval(interval);
+            }, true, true);
+        })
 
         right.addEventListener("click", Right);
+        right.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            t1 = setInterval(Right, 100);
+            right.addEventListener("mouseup", function(up) {
+                if (up.button === 0) clearInterval(t1);
+            })
+        })
 
         function Left() {
             if (sdvig != 0) x += sdvig;
             if (n == (kol_kart - cart)) {
-                x -= sdvig;n--; sdvig = 0;
+                x -= sdvig;
+                n--;
+                sdvig = 0;
             }
             karusel1.style.transform = 'translateX(' + -x + 'px)';
-            sdvig = shir; n++;
-            
+            sdvig = shir;
+            n++;
+
         }
 
         function Right() {
-        x2 = -x + shir;  x = -(x2);
-        if (x == 0 && x2 == 0) {
-            x = shir; x2 = 0;  n = 0; sdvig = 0;
-        }
-        karusel1.style.transform = 'translateX(' + x2 + 'px)';
-        n--;
-        if (n < 0) { n = 0; }
+            x2 = -x + shir;
+            x = -(x2);
+            if (x == 0 && x2 == 0) {
+                x = shir;
+                x2 = 0;
+                n = 0;
+                sdvig = 0;
+            }
+            karusel1.style.transform = 'translateX(' + x2 + 'px)';
+            n--;
+            if (n < 0) {
+                n = 0;
+            }
         }
     </script>
 </body>
