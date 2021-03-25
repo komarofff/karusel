@@ -13,7 +13,6 @@
             height: 330px;
             overflow: hidden;
             display: block;
-            position: relative;
         }
         
         .arrows {
@@ -35,8 +34,6 @@
         }
         
         .karusel {
-            position: absolute; 
-            left: -320px;
             transition: 0.5s linear;
             /* display: flex;
             flex-wrap: nowrap; */
@@ -52,10 +49,6 @@
         }
         
         form {
-            position: absolute;
-            bottom: 20px;
-            left:30%;
-            text-align: center;
             text-align: center;
             margin: 0 auto;
         }
@@ -71,7 +64,6 @@
 
         </div>
         <div class="karusel" id="karusel1">
-            
             <img src="images/1.jpg" alt=" ">
             <img src="images/2.jpg" alt="">
             <img src="images/3.jpg" alt=" ">
@@ -83,20 +75,51 @@
             <img src="images/9.jpg" alt=" ">
             <img src="images/10.jpg" alt="">
             <img src="images/11.jpg" alt=" ">
-
         </div>
         <form name="points">
-
+            <input type="radio" name="point" id="46" checked="checked">
         </form>
     </div>
 
+
     <script>
+        ////// left & right
+        left.addEventListener("click", Left);
+        // left.addEventListener("mousedown", function(down) {
+        //     if (down.button !== 0) return;
+        //     interval = setInterval(Left, 100);
+        //     left.addEventListener("mouseup", (upe) => {
+        //         if (upe.button === 0) clearInterval(interval);
+        //     }, true, true);
+        // })
+
+        right.addEventListener("click", Right);
+        // right.addEventListener("mousedown", function(down) {
+        //     if (down.button !== 0) return;
+        //     t1 = setInterval(Right, 100);
+        //     right.addEventListener("mouseup", function(up) {
+        //         if (up.button === 0) clearInterval(t1);
+        //     })
+        // })
+
+        ///////////// start slide /////////////
+        zz = 0;
+        shir = 320; // ширина картинки+ отступ
+        cart = 3; // сколько картинок показываем
+        let x = shir; // на сколько сдвинуть по оси x
+        n = 0;
+        x2 = 0;
+        let sdvig = 0;
+        let sdvig2 = 0;
+
+        images = document.querySelectorAll(".karusel img");
+        kol_kart = images.length;
         /// points 
         images = document.querySelectorAll(".karusel img");
         kol_kart = images.length;
         let points_text = ``;
-        for (i = 1; i < (kol_kart + 1); i++) {
-            if (i == 1) {
+        for (i = 0; i < (kol_kart); i++) {
+            if (i == 0) {
                 points_text += `<input type="radio" name="point" id="p${i}" checked>`;
             } else {
                 points_text += `<input type="radio" name="point" id="p${i}"  >`;
@@ -110,77 +133,52 @@
         poi_arr = points.querySelectorAll("input");
         //end points
 
-        ////// left & right
-        left.addEventListener("click", Left);
-        // left.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     interval = setInterval(Left, 500);
-        //     left.addEventListener("mouseup", (upe) => {
-        //         if (upe.button === 0) clearInterval(interval);
-        //     }, true, true);
-        // })
-        right.addEventListener("click", Right);
-        // right.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     t1 = setInterval(Right, 500);
-        //     right.addEventListener("mouseup", function(up) {
-        //         if (up.button === 0) clearInterval(t1);
-        //     })
-        // })
-
-        src_im = "";
-        shir = 320; // ширина картинки+ отступ       
-        n = 1;
-        id_second = "";
-        id_first = "";
-
         function Left(id_kart) {
-            console.log("start" + id_second);
-            images2 = document.querySelectorAll(".karusel img");
-            let imgLast = document.createElement('img');
-            imgLast.setAttribute("src", `${images2[0].src}`);
-            karusel1.append(imgLast); // вставить в конец 
-            karusel1.style.cssText = `transition: 0.5s linear;
-            transform:translateX(-${shir}px);`;
-            setTimeout(() => {
-                karusel1.style = "transition: 0s;";
-                images2[0].remove();
-            }, 500);
-            console.log(id_second);
 
-            id_first = `p${n}`;
+            if (sdvig != 0) x += sdvig;
+            if (n == (kol_kart - cart)) {
+                x -= sdvig;
+                n--;
+                sdvig = 0;
+            }
+            karusel1.style.transform = 'translateX(' + -x + 'px)';
+
+            z = n;
+            id_first = `p${z}`;
             document.getElementById(id_first).checked = false;
-            if (++n > kol_kart) n = 1;
-            id_second = `p${n}`;
+            // if (++z > (kol_kart - cart)) z = (kol_kart - cart);
+            id_second = `p${z+1}`;
             document.getElementById(id_second).checked = true;
+
+            sdvig = shir;
+            n++;
+
         }
 
         function Right(id_kart) {
-            images2 = document.querySelectorAll(".karusel img");
-            kol = images2.length - 1;
-           
-            
-            
-            karusel1.style.cssText = `transition: 0.5s linear;
-            transform:translateX(${shir}px);`;
-           
-            setTimeout(() => {
-                karusel1.style = "transition: 0s;";
-                images2[kol].remove();
-                let imgFirst = document.createElement('img');
-            imgFirst.setAttribute("src", `${images2[kol].src}`);
-            karusel1.prepend(imgFirst); // вставить в начало 
+            x2 = -x + shir;
+            x = -(x2);
+            if (x == 0 && x2 == 0) {
+                x = shir;
+                x2 = 0;
+                n = 0;
+                sdvig = 0;
+            }
+            karusel1.style.transform = 'translateX(' + x2 + 'px)';
 
-            }, 500);
-            
-
-            id_first = `p${n}`;
+            z2 = n;
+            id_first = `p${z2}`;
             document.getElementById(id_first).checked = false;
-            if (--n < 1) n = kol_kart;
-            id_second = `p${n}`;
+            // if (--z < 1) z = 1;
+            z3 = z2 - 1;
+            if (z3 < 0) z3 = 0;
+            id_second = `p${z3}`;
             document.getElementById(id_second).checked = true;
 
-
+            n--;
+            if (n < 0) {
+                n = 0;
+            }
 
         }
     </script>

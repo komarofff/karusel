@@ -13,6 +13,7 @@
             height: 330px;
             overflow: hidden;
             display: block;
+            position: relative;
         }
         
         .arrows {
@@ -34,6 +35,8 @@
         }
         
         .karusel {
+            position: absolute; 
+            left: -320px;
             transition: 0.5s linear;
             /* display: flex;
             flex-wrap: nowrap; */
@@ -105,21 +108,21 @@
 
         ////// left & right
         left.addEventListener("click", Left);
-        left.addEventListener("mousedown", function(down) {
-            if (down.button !== 0) return;
-            interval = setInterval(Left, 200);
-            left.addEventListener("mouseup", (upe) => {
-                if (upe.button === 0) clearInterval(interval);
-            }, true, true);
-        })
+        // left.addEventListener("mousedown", function(down) {
+        //     if (down.button !== 0) return;
+        //     interval = setInterval(Left, 500);
+        //     left.addEventListener("mouseup", (upe) => {
+        //         if (upe.button === 0) clearInterval(interval);
+        //     }, true, true);
+        // })
         right.addEventListener("click", Right);
-        right.addEventListener("mousedown", function(down) {
-            if (down.button !== 0) return;
-            t1 = setInterval(Right, 200);
-            right.addEventListener("mouseup", function(up) {
-                if (up.button === 0) clearInterval(t1);
-            })
-        })
+        // right.addEventListener("mousedown", function(down) {
+        //     if (down.button !== 0) return;
+        //     t1 = setInterval(Right, 500);
+        //     right.addEventListener("mouseup", function(up) {
+        //         if (up.button === 0) clearInterval(t1);
+        //     })
+        // })
 
         src_im = "";
         shir = 320; // ширина картинки+ отступ       
@@ -149,19 +152,23 @@
         }
 
         function Right(id_kart) {
-
             images2 = document.querySelectorAll(".karusel img");
             kol = images2.length - 1;
-            let imgFirst = document.createElement('img');
-            imgFirst.setAttribute("src", `${images2[kol].src}`);
-            karusel1.prepend(imgFirst); // вставить в начало 
+           
+            
+            
             karusel1.style.cssText = `transition: 0.5s linear;
             transform:translateX(${shir}px);`;
+           
             setTimeout(() => {
                 karusel1.style = "transition: 0s;";
                 images2[kol].remove();
+                let imgFirst = document.createElement('img');
+            imgFirst.setAttribute("src", `${images2[kol].src}`);
+            karusel1.prepend(imgFirst); // вставить в начало 
+
             }, 500);
-            console.log(n);
+            
 
             id_first = `p${n}`;
             document.getElementById(id_first).checked = false;
