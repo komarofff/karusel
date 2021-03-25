@@ -104,21 +104,21 @@
 
         ////// left & right
         left.addEventListener("click", Left);
-        // left.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     interval = setInterval(Left, 500);
-        //     left.addEventListener("mouseup", (upe) => {
-        //         if (upe.button === 0) clearInterval(interval);
-        //     }, true, true);
-        // })
+        left.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            interval = setInterval(Left, 500);
+            left.addEventListener("mouseup", (upe) => {
+                if (upe.button === 0) clearInterval(interval);
+            }, true, true);
+        })
         right.addEventListener("click", Right);
-        // right.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     t1 = setInterval(Right, 500);
-        //     right.addEventListener("mouseup", function(up) {
-        //         if (up.button === 0) clearInterval(t1);
-        //     })
-        // })
+        right.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            t1 = setInterval(Right, 500);
+            right.addEventListener("mouseup", function(up) {
+                if (up.button === 0) clearInterval(t1);
+            })
+        })
 
         src_im = "";
         shir = 320; // ширина картинки+ отступ       
