@@ -106,7 +106,7 @@
         left.addEventListener("click", Left);
         left.addEventListener("mousedown", function(down) {
             if (down.button !== 0) return;
-            interval = setInterval(Left, 500);
+            interval = setInterval(Left, 200);
             left.addEventListener("mouseup", (upe) => {
                 if (upe.button === 0) clearInterval(interval);
             }, true, true);
@@ -114,7 +114,7 @@
         right.addEventListener("click", Right);
         right.addEventListener("mousedown", function(down) {
             if (down.button !== 0) return;
-            t1 = setInterval(Right, 500);
+            t1 = setInterval(Right, 200);
             right.addEventListener("mouseup", function(up) {
                 if (up.button === 0) clearInterval(t1);
             })
