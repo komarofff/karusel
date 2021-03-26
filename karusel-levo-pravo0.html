@@ -80,43 +80,23 @@
     </div>
 
     <script>
-        // ПЕРЕТАСКИВАНИЕ
-        x55 = 0, x1 = 0;
-        karusel1.addEventListener("dragstart", Start);
-
-        function Start(e) {
-            x1 = e.pageX;
-
-            karusel1.addEventListener("dragend", (e) => {
-                x55 = e.pageX;
-                console.log("x55= " + x55 + " | " + "x1= " + x1)
-                if (x55 < x1) {
-                    d1 = setTimeout(Left, 200);
-                }
-                if (x55 > x1) {
-                    d2 = setTimeout(Right, 200);
-                }
-            })
-        }
-
-
         ////// left & right
         left.addEventListener("click", Left);
-        // left.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     interval = setInterval(Left, 500);
-        //     left.addEventListener("mouseup", (upe) => {
-        //         if (upe.button === 0) clearInterval(interval);
-        //     }, true, true);
-        // })
+        left.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            interval = setInterval(Left, 500);
+            left.addEventListener("mouseup", (upe) => {
+                if (upe.button === 0) clearInterval(interval);
+            }, true, true);
+        })
         right.addEventListener("click", Right);
-        // right.addEventListener("mousedown", function(down) {
-        //     if (down.button !== 0) return;
-        //     t1 = setInterval(Right, 500);
-        //     right.addEventListener("mouseup", function(up) {
-        //         if (up.button === 0) clearInterval(t1);
-        //     })
-        // })
+        right.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            t1 = setInterval(Right, 500);
+            right.addEventListener("mouseup", function(up) {
+                if (up.button === 0) clearInterval(t1);
+            })
+        })
 
         //SLIDER
         shir = 320; // ширина картинки+ отступ
@@ -133,7 +113,6 @@
         kol_kart = images.length;
 
         function Left() {
-            x55 = 0, x1 = 0;
             if (sdvig != 0) x += sdvig;
             // возвращаем назад 
             // if (n == (kol_kart - cart)) {
@@ -150,12 +129,10 @@
             karusel1.style.transform = 'translateX(' + -x + 'px)';
             sdvig = shir;
             n++;
-            clearInterval(d1);
-            x55 = 0, x1 = 0;
+
         }
 
         function Right() {
-            x55 = 0, x1 = 0;
             x2 = -x + shir;
             x = -(x2);
             if (x == 0 && x2 == 0) {
@@ -169,8 +146,7 @@
             if (n < 0) {
                 n = 0;
             }
-            clearInterval(d2);
-            x55 = 0, x1 = 0;
+
         }
     </script>
 </body>
