@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КАРУСЕЛЬ</title>
+    <style>
+        .container {
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            width: 960px;
+            height: 330px;
+            overflow: hidden;
+            display: block;
+            position: relative;
+        }
+        
+        .arrows {
+            margin: 0 auto;
+            width: 940px;
+            height: 25px;
+        }
+        
+        .arrows span {
+            float: right;
+        }
+        
+        .left,
+        .right {
+            cursor: pointer;
+            padding: 2px 2px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        .karusel {
+            position: absolute;
+            /* left: -320px; */
+            transition: 0.5s linear;
+            /* display: flex;
+            flex-wrap: nowrap; */
+            min-width: 1000%;
+            display: inline-table;
+        }
+        
+        .karusel img {
+            height: 250px;
+            width: 310px;
+            margin: 10px 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="arrows">
+            <span class="right" id="right">></span>
+            <span class="left" id="left"><</span>
+
+        </div>
+        <div class="karusel" id="karusel1">
+
+            <img src="images/1.jpg" alt=" ">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt=" ">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt=" ">
+            <img src="images/6.jpg" alt="">
+            <img src="images/7.jpg" alt=" ">
+            <img src="images/8.jpg" alt="">
+            <img src="images/9.jpg" alt=" ">
+            <img src="images/10.jpg" alt="">
+            <img src="images/11.jpg" alt=" ">
+
+        </div>
+
+    </div>
+
+    <script>
+        ////// left & right
+        left.addEventListener("click", Left);
+        left.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            interval = setInterval(Left, 500);
+            left.addEventListener("mouseup", (upe) => {
+                if (upe.button === 0) clearInterval(interval);
+            }, true, true);
+        })
+        right.addEventListener("click", Right);
+        right.addEventListener("mousedown", function(down) {
+            if (down.button !== 0) return;
+            t1 = setInterval(Right, 500);
+            right.addEventListener("mouseup", function(up) {
+                if (up.button === 0) clearInterval(t1);
+            })
+        })
+
+        //SLIDER
+        shir = 320; // ширина картинки+ отступ
+        cart = 3; // сколько картинок показываем
+        let x = shir; // на сколько сдвинуть по оси x
+        n = 0;
+        x2 = 0;
+        let sdvig = 0;
+        let sdvig2 = 0;
+
+        // console.log("start | x=" + x + " x2=" + x2 + " n==" + n);
+
+        images = document.querySelectorAll(".karusel img");
+        kol_kart = images.length;
+
+        function Left() {
+            if (sdvig != 0) x += sdvig;
+            // возвращаем назад 
+            // if (n == (kol_kart - cart)) {
+            //     x = 0;
+            //     n = -1;
+            //     sdvig = 0;
+            // } 
+            // останавливаем 
+            if (n == (kol_kart - cart)) {
+                x -= sdvig;
+                n--;
+                sdvig = 0;
+            }
+            karusel1.style.transform = 'translateX(' + -x + 'px)';
+            sdvig = shir;
+            n++;
+
+        }
+
+        function Right() {
+            x2 = -x + shir;
+            x = -(x2);
+            if (x == 0 && x2 == 0) {
+                x = shir;
+                x2 = 0;
+                n = 0;
+                sdvig = 0;
+            }
+            karusel1.style.transform = 'translateX(' + x2 + 'px)';
+            n--;
+            if (n < 0) {
+                n = 0;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
