@@ -75,78 +75,84 @@
 
     <script>
       // ПЕРЕТАСКИВАНИЕ
-      x55 = 0, x1 = 0;
-      karusel1.addEventListener("dragstart", Start);
-
-      function Start(e) {
-        proverka = false;
-        x1 = e.pageX;
+      xCoordinateMovement = 0;
+      xCoordinateStart = 0;
+      karusel1.addEventListener("dragstart", startMovement);
+      function startMovement(e) {
+        check = false;
+        xCoordinateStart = e.pageX;
         karusel1.addEventListener("dragend", (e) => {
-          x55 = e.pageX;
-          console.log("x55= " + x55 + " | " + "x1= " + x1);
-          if (x55 < x1) {
-             if(!proverka) {
-                 //запускаем функцию ОДИН раз для исключения 
-                 // повторений
-               Left();
-               proverka = true;
-            }
-            }
-          if (x55 > x1) {
-            if(!proverka) {
-              Right();
-               proverka = true;
-            }
+          xCoordinateMovement = e.pageX;
+          if (xCoordinateMovement < xCoordinateStart && !check) {
+            shiftLeft();
+            check = true;
+          }
+          if (xCoordinateMovement > xCoordinateStart && !check) {
+            shiftRight();
+            check = true;
           }
         });
       }
-
       ////// left & right
-      left.addEventListener("click", Left);
+      left.addEventListener("click", shiftLeft);
       left.addEventListener("mousedown", function (down) {
         if (down.button !== 0) return;
-        interval = setInterval(Left, 500);
-        left.addEventListener(
-          "mouseup",
-          (upe) => {if (upe.button === 0) clearInterval(interval);});
+        interval = setInterval(shiftLeft, 500);
+        left.addEventListener("mouseup", (upe) => {
+          if (upe.button === 0) clearInterval(interval);
+        });
       });
-      right.addEventListener("click", Right);
+      right.addEventListener("click", shiftRight);
       right.addEventListener("mousedown", function (down) {
         if (down.button !== 0) return;
-        t1 = setInterval(Right, 500);
+        t1 = setInterval(shiftRight, 500);
         right.addEventListener("mouseup", function (up) {
-            if (up.button === 0) clearInterval(t1);});
+          if (up.button === 0) clearInterval(t1);
+        });
       });
 
       //SLIDER
-      shir = 320; // ширина картинки+ отступ
-      cart = 3; // сколько картинок показываем
-      let x = shir; // на сколько сдвинуть по оси x
-      n = 0; x2 = 0; let sdvig = 0;let sdvig2 = 0;
-      images = document.querySelectorAll(".karusel img");
-      kol_kart = images.length;
+      const imgWidth = 320; // ширина картинки+ отступ
+      const amountImgForShow = 3; // сколько картинок показываем
+      let shiftX = imgWidth; // на сколько сдвинуть по оси x
+      let shiftX2 = 0;
+      let counter = 0;
+      let offset = 0;
+      let sdvig2 = 0;
+      let images = document.querySelectorAll(".karusel img");
+      allImgAmaunt = images.length;
 
-      function Left() {
-        if (sdvig != 0) x += sdvig;
+      function shiftLeft() {
+        if (offset != 0) shiftX += offset;
         // возвращаем назад
-        // if (n == (kol_kart - cart)) {
-        //     x = 0;
-        //     n = -1;
-        //     sdvig = 0;
+        // if (counter == (allImgAmaunt - amountImgForShow)) {
+        //     shiftX = 0; counter = -1;offset = 0;
         // }
         // останавливаем
-        if (n == kol_kart - cart) {x -= sdvig; n--;sdvig = 0;}
-        karusel1.style.transform = "translateX(" + -x + "px)";
-        sdvig = shir;
-        n++;
+        if (counter == allImgAmaunt- amountImgForShow) {
+          shiftX -= offset;
+          counter--;
+          offset = 0;
+        }
+        karusel1.style.transform = "translateX(" + -shiftX + "px)";
+        offset = imgWidth;
+        counter++;
       }
 
-      function Right() {
-        x2 = -x + shir; x = -x2;
-        if (x == 0 && x2 == 0) { x = shir; x2 = 0;n = 0;sdvig = 0;}
-        karusel1.style.transform = "translateX(" + x2 + "px)";
-        n--;
-        if (n < 0) {n = 0;}
+      function shiftRight() {
+        shiftX2 = -shiftX + imgWidth;
+        shiftX = -shiftX2;
+        if (shiftX == 0 && shiftX2 == 0) {
+          shiftX = imgWidth;
+          shiftX2 = 0;
+          counter = 0;
+          offset = 0;
+        }
+        karusel1.style.transform = "translateX(" + shiftX2 + "px)";
+        counter--;
+        if (counter < 0) {
+          counter = 0;
+        }
       }
     </script>
   </body>
