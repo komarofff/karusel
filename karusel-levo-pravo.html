@@ -99,7 +99,10 @@
         if (down.button !== 0) return;
         let interval = setInterval(shiftLeft, 500);
         left.addEventListener("mouseup", (upe) => {
-          if (upe.button === 0) clearInterval(interval);
+          if (upe.button === 0) {
+            clearInterval(interval);
+            left.removeEventListener("mouseup", () => {}, false);
+          }
         });
       });
       right.addEventListener("click", shiftRight);
@@ -107,7 +110,10 @@
         if (down.button !== 0) return;
         let interval2 = setInterval(shiftRight, 500);
         right.addEventListener("mouseup", function (up) {
-          if (up.button === 0) clearInterval(interval2);
+          if (up.button === 0) {
+            clearInterval(interval2);
+            right.removeEventListener("mouseup", () => {}, false);
+          }
         });
       });
 
