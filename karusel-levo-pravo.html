@@ -75,11 +75,11 @@
 
     <script>
       // ПЕРЕТАСКИВАНИЕ
-      xCoordinateMovement = 0;
-      xCoordinateStart = 0;
+      let xCoordinateMovement = 0;
+      let xCoordinateStart = 0;
       karusel1.addEventListener("dragstart", startMovement);
       function startMovement(e) {
-        check = false;
+        let check = false;
         xCoordinateStart = e.pageX;
         karusel1.addEventListener("dragend", (e) => {
           xCoordinateMovement = e.pageX;
@@ -97,7 +97,7 @@
       left.addEventListener("click", shiftLeft);
       left.addEventListener("mousedown", function (down) {
         if (down.button !== 0) return;
-        interval = setInterval(shiftLeft, 500);
+        let interval = setInterval(shiftLeft, 500);
         left.addEventListener("mouseup", (upe) => {
           if (upe.button === 0) clearInterval(interval);
         });
@@ -105,9 +105,9 @@
       right.addEventListener("click", shiftRight);
       right.addEventListener("mousedown", function (down) {
         if (down.button !== 0) return;
-        t1 = setInterval(shiftRight, 500);
+        let interval2 = setInterval(shiftRight, 500);
         right.addEventListener("mouseup", function (up) {
-          if (up.button === 0) clearInterval(t1);
+          if (up.button === 0) clearInterval(interval2);
         });
       });
 
@@ -120,7 +120,7 @@
       let offset = 0;
       let sdvig2 = 0;
       let images = document.querySelectorAll(".karusel img");
-      allImgAmaunt = images.length;
+      let allImgAmaunt = images.length;
 
       function shiftLeft() {
         if (offset != 0) shiftX += offset;
