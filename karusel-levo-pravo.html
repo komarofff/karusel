@@ -118,18 +118,19 @@
       let shiftX2 = 0;
       let counter = 0;
       let offset = 0;
-      let sdvig2 = 0;
       let images = document.querySelectorAll(".karusel img");
       let allImgAmaunt = images.length;
 
       function shiftLeft() {
+        left.removeEventListener("mousedown", () => {}, false);
+        left.removeEventListener("click", () => {}, false);
         if (offset != 0) shiftX += offset;
         // возвращаем назад
         // if (counter == (allImgAmaunt - amountImgForShow)) {
         //     shiftX = 0; counter = -1;offset = 0;
         // }
         // останавливаем
-        if (counter == allImgAmaunt- amountImgForShow) {
+        if (counter == allImgAmaunt - amountImgForShow) {
           shiftX -= offset;
           counter--;
           offset = 0;
@@ -140,6 +141,8 @@
       }
 
       function shiftRight() {
+        right.removeEventListener("mousedown", () => {}, false);
+        right.removeEventListener("click", () => {}, false);
         shiftX2 = -shiftX + imgWidth;
         shiftX = -shiftX2;
         if (shiftX == 0 && shiftX2 == 0) {

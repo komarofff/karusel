@@ -84,11 +84,12 @@
     </div>
 
     <script>
-      /// points
-      images = document.querySelectorAll(".karusel img");
-      kol_kart = images.length;
+      const timeInterval = 500;
+      /// points ( buttons)
+      let images = document.querySelectorAll(".karusel img");
+      let allImgAmount = images.length;
       let points_text = ``;
-      for (i = 1; i < kol_kart + 1; i++) {
+      for (i = 1; i < allImgAmount + 1; i++) {
         if (i == 1) {
           points_text += `<input type="radio" name="point" id="p${i}" checked>`;
         } else {
@@ -96,67 +97,74 @@
         }
       }
       points.innerHTML = points_text;
-      points.addEventListener("click", function (e) {
-        id_but = e.target.id;
-        // Left(id_but);
-      });
-      poi_arr = points.querySelectorAll("input");
+      // add id-to function
+      // points.addEventListener("click", function (e) {
+      //   id_but = e.target.id;
+      // });
+      // points_arr = points.querySelectorAll("input");
       //end points
 
-      // ПЕРЕТАСКИВАНИЕ
-      (x55 = 0), (x1 = 0);
-      karusel1.addEventListener("dragstart", Start);
-      function Start(e) {
-        proverka = false;
-        x1 = e.pageX;
+      // dragstart
+      let coordinateXMovement = 0;
+      let coordinateXStart = 0;
+      karusel1.addEventListener("dragstart", shiftStart);
+      function shiftStart(e) {
+        let check = false;
+        coordinateXStart = e.pageX;
         karusel1.addEventListener("dragend", (e) => {
-          x55 = e.pageX;
-        //   console.log("x55= " + x55 + " | " + "x1= " + x1);
-          if (x55 < x1) {
-            if (!proverka) {
-              //запускаем функцию ОДИН раз для исключения
-              // повторений
-              Left(); proverka = true;
-            }
+          coordinateXMovement = e.pageX;
+          if (coordinateXMovement < coordinateXStart && !check) {
+            shiftLeft();
+            check = true;
           }
-          if (x55 > x1) {
-            if (!proverka) {
-              Right(); proverka = true;
-            }
+          if (coordinateXMovement > coordinateXStart && !check) {
+            shiftRight();
+            check = true;
           }
         });
       }
-      ////// left & right
+      ////// move left & right
       left.addEventListener("click", () => {
-        proverka = false;
-        Left();
+        check = false;
+        shiftLeft();
       });
       left.addEventListener("mousedown", function (down) {
         if (down.button !== 0) return;
-        interval = setInterval(Left, 500);
-        left.addEventListener(
-          "mouseup",
-          (upe) => {if (upe.button === 0) clearInterval(interval);});
-      });
-      right.addEventListener("click", () => {proverka = false;Right();});
-      right.addEventListener("mousedown", function (down) {
-        if (down.button !== 0) return;
-         t1 = setInterval(Right, 500);
-        right.addEventListener("mouseup", function (up) {
-          if (up.button === 0) clearInterval(t1);
+        let interval0 = setInterval(shiftLeft, timeInterval);
+        left.addEventListener("mouseup", (upe) => {
+          if (upe.button === 0) {
+            clearInterval(interval0);
+            left.removeEventListener("mouseup", () => {}, false);
+          }
         });
       });
 
-      src_im = "";
-      shir = 320; // ширина картинки+ отступ
-      n = 1;
-      id_second = "";
-      id_first = "";
+      right.addEventListener("click", () => {
+        check = false;
+        shiftRight();
+      });
+      right.addEventListener("mousedown", function (down) {
+        if (down.button !== 0) return;
+        let interval1 = setInterval(shiftRight, timeInterval);
+        right.addEventListener("mouseup", function (up) {
+          if (up.button === 0) {
+            clearInterval(interval1);
+            left.removeEventListener("mouseup", () => {}, false);
+          }
+        });
+      });
 
-      function Left(id_kart) {
+      const imageWidth = 320; // ширина картинки+ отступ
+      let counter = 1;
+      let id_second = "";
+      let id_first = "";
+
+      function shiftLeft(id_kart) {
+        left.removeEventListener("mousedown", () => {}, false);
+        left.removeEventListener("click", () => {}, false);
         karusel1.style.cssText = `
         transition: 0.5s linear;
-        transform:translateX(-${shir}px);`;
+        transform:translateX(-${imageWidth}px);`;
 
         setTimeout(() => {
           karusel1.style = "transition: 0s;";
@@ -164,34 +172,37 @@
           let imgLast = document.createElement("img");
           imgLast.setAttribute("src", `${images2[0].src}`);
           karusel1.append(imgLast); // вставить в конец
-          images2[0].remove();}, 500);
-       
-        // console.log(id_second);
-        id_first = `p${n}`;
+          images2[0].remove();
+        }, timeInterval);
+
+        id_first = `p${counter}`;
         document.getElementById(id_first).checked = false;
-        if (++n > kol_kart) n = 1;
-        id_second = `p${n}`;
+        if (++counter > allImgAmount) counter = 1;
+        id_second = `p${counter}`;
         document.getElementById(id_second).checked = true;
       }
 
-      function Right(id_kart) {
+      function shiftRight(id_kart) {
+        right.removeEventListener("mousedown", () => {}, false);
+        right.removeEventListener("click", () => {}, false);
         karusel1.style.cssText = `
         transition: 0.5s linear;
-        transform:translateX(${shir}px);`;
+        transform:translateX(${imageWidth}px);`;
 
         setTimeout(() => {
           images2 = document.querySelectorAll(".karusel img");
-          kol = images2.length - 1;
+          let AmountImg = images2.length - 1;
           karusel1.style = "transition: 0s;";
-          images2[kol].remove();
+          images2[AmountImg].remove();
           let imgFirst = document.createElement("img");
-          imgFirst.setAttribute("src", `${images2[kol].src}`);
-          karusel1.prepend(imgFirst);}, 500);
+          imgFirst.setAttribute("src", `${images2[AmountImg].src}`);
+          karusel1.prepend(imgFirst);
+        }, timeInterval);
 
-        id_first = `p${n}`;
+        id_first = `p${counter}`;
         document.getElementById(id_first).checked = false;
-        if (--n < 1) n = kol_kart;
-        id_second = `p${n}`;
+        if (--counter < 1) counter = allImgAmount;
+        id_second = `p${counter}`;
         document.getElementById(id_second).checked = true;
       }
     </script>
