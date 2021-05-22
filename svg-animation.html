@@ -67,6 +67,7 @@
 
 <body>
     <div class=" mobile-exp " id="circle_animation">
+        <label for="range" id="put_percents">72%</label>
         <input type="range" name="range" id="range" min="1" max="99" value="72">
         <button id="start" class="button">Press me!</button>
         <div class="inline2">
@@ -95,6 +96,10 @@
     </div>
 
     <script>
+        value=72;
+        document.getElementById("range").addEventListener("change",()=>{
+            value=range.value;
+        })
         //////////// circle animation start \\\\\\\\\\\\\\\\\\\\\\\
         
         document.getElementById("start").addEventListener("click", () => {
@@ -104,11 +109,11 @@
             timerCircle();
         })
         function timerCircle() {
-            if (countNumbers < 72) {
+            if (countNumbers < value) {
                 countNumbers++;
             }
             circleNumbers.innerHTML = `${countNumbers}%`;
-            if (countNumbers > 71) {
+            if (countNumbers > (value-1)) {
                 clearTimeout(timer55);
             } else {
                 timer55 = setTimeout(timerCircle, 15);
@@ -116,15 +121,16 @@
         }
         /// fill stripe 
         function fillStripe() {
+            speed=(value*15)/1000;
             path = document.getElementById('circle');
             length = path.getTotalLength();
-            segment = (length / 100) * 72;
+            segment = (length / 100) * value;
             path.style.transition = path.style.WebkitTransition = 'none';
             path.style.strokeDasharray = length + ' ' + length;
             path.style.strokeDashoffset = length;
             path.getBoundingClientRect();
             path.style.transition = path.style.WebkitTransition =
-                'stroke-dashoffset 1.1s linear'; //ease-in-out
+                `stroke-dashoffset ${speed}s linear`; //ease-in-out
             path.style.strokeDashoffset = length - segment;
         }
 //////////////////// circle animation end  /////////////////////////////
