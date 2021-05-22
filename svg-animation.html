@@ -49,7 +49,7 @@
             color: #292A2B;
         }
 
-        .mobile-exp  {
+        .mobile-exp {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -59,7 +59,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        .button{
+
+        .button {
             margin-bottom: 30px;
         }
     </style>
@@ -67,7 +68,7 @@
 
 <body>
     <div class=" mobile-exp " id="circle_animation">
-        <label for="range" id="put_percents">72%</label>
+        <label for="range" id="put_percents">Change me!</label>
         <input type="range" name="range" id="range" min="1" max="99" value="72">
         <button id="start" class="button">Press me!</button>
         <div class="inline2">
@@ -92,19 +93,23 @@
 
             </div>
         </div>
-        
+
     </div>
 
     <script>
-        value=72;
-        document.getElementById("range").addEventListener("change",()=>{
-            value=range.value;
+        value = 72;
+        document.getElementById("range").addEventListener("change", () => {
+            value = range.value;
+            countNumbers = 1;
+            circleNumbers = document.getElementById("percents55");
+            fillStripe();
+            timerCircle();
         })
         //////////// circle animation start \\\\\\\\\\\\\\\\\\\\\\\
-        
+
         document.getElementById("start").addEventListener("click", () => {
-        countNumbers = 1;
-        circleNumbers = document.getElementById("percents55");
+            countNumbers = 1;
+            circleNumbers = document.getElementById("percents55");
             fillStripe();
             timerCircle();
         })
@@ -113,7 +118,7 @@
                 countNumbers++;
             }
             circleNumbers.innerHTML = `${countNumbers}%`;
-            if (countNumbers > (value-1)) {
+            if (countNumbers > (value - 1)) {
                 clearTimeout(timer55);
             } else {
                 timer55 = setTimeout(timerCircle, 15);
@@ -121,7 +126,7 @@
         }
         /// fill stripe 
         function fillStripe() {
-            speed=(value*15)/1000;
+            speed = (value * 15) / 1000;
             path = document.getElementById('circle');
             length = path.getTotalLength();
             segment = (length / 100) * value;
