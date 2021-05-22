@@ -101,7 +101,7 @@
         value = 72;
         document.getElementById("range").addEventListener("change", () => {
             value = range.value;
-            put_percents.innerHTML=value;
+            put_percents.innerHTML=`${value}%`;
             countNumbers = 1;
             circleNumbers = document.getElementById("percents55");
             fillStripe();
