@@ -93,14 +93,16 @@
     </div>
     <script>
     // top slider start
-        transition_width = 200;
-        count = 1;
+        const speed=3; // slider speed in seconds
+        const timeout=speed*1000;
         elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
+        width_of_element=elem[0].offsetWidth;
+        transition_width = width_of_element*2;
         end1 = elem.length - 1;
         end = elem.length;
         function firstClone(){
         document.getElementById("technologies-slider").style.transition = " 0s";
-        document.getElementById("technologies-slider").style.transform = `translateX(-100px)`;
+        document.getElementById("technologies-slider").style.transform = `translateX(-${width_of_element}px)`;
         start_clone1=elem[end1].cloneNode(true); 
         elem[0].before(start_clone1);   
         start_clone1=elem[0].cloneNode(true); 
@@ -108,15 +110,15 @@
         sliderTechnology();
         }    
         function sliderTechnology() {
-            document.getElementById("technologies-slider").style.transition = " 4s linear";
+            document.getElementById("technologies-slider").style.transition = ` ${speed}s linear`;
             document.getElementById("technologies-slider").style.transform = `translateX(-${transition_width}px)`;
-            setTimeout(secondClone, 4000);
+            setTimeout(secondClone, timeout);
                        
         }
 
         function secondClone(){
         document.getElementById("technologies-slider").style.transition = " 0s";
-        document.getElementById("technologies-slider").style.transform = `translateX(-100px)`;
+        document.getElementById("technologies-slider").style.transform = `translateX(-${width_of_element}px)`;
         elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
         start_clone2=elem[2].cloneNode(true); 
         end2=end1+2;
