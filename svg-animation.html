@@ -51,11 +51,15 @@
 
         .mobile-exp img {
             width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 
-<body onload="fillStripe();timerCircle();">
+<body>
     <div class=" mobile-exp " id="circle_animation">
 
         <div class="inline2">
@@ -80,15 +84,18 @@
 
             </div>
         </div>
+        <button id="start">Press me!</button>
     </div>
 
     <script>
         //////////// circle animation start \\\\\\\\\\\\\\\\\\\\\\\
-       var countNumbers = 1;
-       circleNumbers = document.getElementById("percents55");
-        // fillStripe();
-        // timerCircle();
-
+        
+        document.getElementById("start").addEventListener("click", () => {
+        countNumbers = 1;
+        circleNumbers = document.getElementById("percents55");
+            fillStripe();
+            timerCircle();
+        })
         function timerCircle() {
             if (countNumbers < 72) {
                 countNumbers++;
