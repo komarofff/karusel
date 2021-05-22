@@ -94,7 +94,7 @@
     </div>
     <script>
     // top slider start
-        transition_width = 0;
+        transition_width = 200;
         count = 1;
         elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
         end1 = elem.length - 1;
@@ -109,19 +109,10 @@
         sliderTechnology();
         }    
         function sliderTechnology() {
-            transition_width = 200;
-            // Get the element
-            // elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
-            // Create a copy of it
-            //clone = elem[count].cloneNode(true);
-            // Inject it into the DOM
-            // end1 = elem.length - 1;
             document.getElementById("technologies-slider").style.transition = " 4s linear";
             document.getElementById("technologies-slider").style.transform = `translateX(-${transition_width}px)`;
             setTimeout(secondClone, 4000);
-            //secondClone();
-            // elem[end1].after(clone);
-           
+                       
         }
 
         function secondClone(){
@@ -132,7 +123,7 @@
         end2=end1+2;
         elem[end2].after(start_clone2); 
         elem[0].remove();  
-        tech_timeout = setTimeout(sliderTechnology, 10);
+        tech_timeout = setTimeout(sliderTechnology, 50);
        }   
  
     // top slider end
