@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .services-technologies-slider {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            min-width: 100%;
+            padding: 0;
+        }
+
+        .technology-description {
+            font-family: Inter;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 19px;
+            text-align: center;
+            color: #000000;
+            opacity: 0.4;
+        }
+
+        .services-flex {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .services-images {
+            width: 50px;
+            max-width: 100%;
+            height: auto;
+            margin: 0 50px;
+        }
+
+        .container {
+            width: 600px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid red;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body onload="sliderTechnology()">
+    <div class="container">
+        <div class="services-technologies-slider" id="technologies-slider">
+
+            <div class="services-flex">
+                <img class="services-images" src="images/Vue.js.png" />
+                <p class="technology-description">Vue.js</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/Laravel.png" />
+                <p class="technology-description">Laravel</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/CSS.png" />
+                <p class="technology-description">CSS</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/HTML.png" />
+                <p class="technology-description">HTML</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/JavaScript.png" />
+                <p class="technology-description">JavaScript</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/Amazon S3.png" />
+                <p class="technology-description">Amazon_S3</p>
+            </div>
+            <div class="services-flex">
+                <img class="services-images" src="images/CDN.png" />
+                <p class="technology-description">CDN</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        // top slider start
+        transition_width = 0;
+        count = 0;
+        function sliderTechnology() {
+            transition_width += 100;
+            // Get the element
+            elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
+            // Create a copy of it
+            clone = elem[count].cloneNode(true);
+            // Inject it into the DOM
+            end1 = elem.length - 1;
+            document.getElementById("technologies-slider").style.transition = " 8s linear";
+            document.getElementById("technologies-slider").style.transform = `translateX(-${transition_width}px)`;
+            tech_timeout = setTimeout(sliderTechnology, 4000);
+            elem[end1].after(clone);
+            count++;
+        }
+// width = document.documentElement.clientWidth;
+// if( width<=768){    
+//     transition_width=0; 
+//     count=0;
+//     tech_timeout=setTimeout(sliderTechnology,4000);
+//     }    
+// top slider end
+    </script>
+</body>
+
+</html>
