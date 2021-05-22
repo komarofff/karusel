@@ -68,7 +68,8 @@
 
 <body>
     <div class=" mobile-exp " id="circle_animation">
-        <label for="range" id="put_percents">Change me!</label>
+        <p>Change me!</p>
+        <label for="range" id="put_percents">72%</label>
         <input type="range" name="range" id="range" min="1" max="99" value="72">
         <button id="start" class="button">Press me!</button>
         <div class="inline2">
@@ -100,6 +101,7 @@
         value = 72;
         document.getElementById("range").addEventListener("change", () => {
             value = range.value;
+            put_percents.innerHTML=value;
             countNumbers = 1;
             circleNumbers = document.getElementById("percents55");
             fillStripe();
