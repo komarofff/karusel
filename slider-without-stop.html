@@ -53,10 +53,20 @@
             transform: translate(-50%, -50%);
             /* overflow: hidden; */
         }
+        .hidden{
+            overflow: hidden;
+        }
+        .center{
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+        }
     </style>
 </head>
 
 <body onload="firstClone();">
+    <button onclick="addStyle()" class="center">Press me</button>
     <div class="container">
         <div class="services-technologies-slider" id="technologies-slider">
 
@@ -92,6 +102,11 @@
         </div>
     </div>
     <script>
+        function addStyle(){
+            class_list=document.querySelector(".container");
+                    class_list.classList.toggle("hidden");
+            
+        }
     // top slider start
         const speed=5; // slider speed in seconds
         const timeout=speed*1000;
