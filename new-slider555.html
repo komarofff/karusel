@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .services-technologies-slider {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            min-width: 100%;
+            padding: 0;
+            transition: 5s linear;
+            /*transform: translateX(0);*/
+        }
+
+        .technology-description {
+            font-family: Inter;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 19px;
+            text-align: center;
+            color: #000000;
+            opacity: 0.4;
+        }
+
+        .services-flex {
+            float: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .services-images {
+            width: 50px;
+            max-height: 70px;
+            margin: 0 20px;
+        }
+
+
+        .container {
+            width: 600px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 0 20px #ccc;
+            transform: translate(-50%, -50%);
+            /* overflow: hidden; */
+        }
+        .hidden{
+            overflow: hidden;
+        }
+        .center{
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+        }
+    </style>
+</head>
+
+<body onload="firstClone();">
+<button onclick="addStyle()" class="center">Press me</button>
+<div class="container">
+    <div class="services-technologies-slider" id="technologies-slider">
+
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Vue.js.png" />
+            <p class="technology-description">Vue.js</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Laravel.png" />
+            <p class="technology-description">Laravel</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CSS.png" />
+            <p class="technology-description">CSS</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/HTML.png" />
+            <p class="technology-description">HTML</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/JavaScript.png" />
+            <p class="technology-description">JavaScript</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/Amazon S3.png" />
+            <p class="technology-description">Amazon_S3</p>
+        </div>
+        <div class="services-flex">
+            <img class="services-images" src="images/CDN.png" />
+            <p class="technology-description">CDN</p>
+        </div>
+
+    </div>
+</div>
+<script>
+    function addStyle(){
+        class_list=document.querySelector(".container");
+        class_list.classList.toggle("hidden");
+
+    }
+    // top slider start
+    let speed=5; // slider speed in seconds
+    let timeout=speed*1000;
+    elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
+    width_of_element=elem[0].offsetWidth;
+    transition_width = width_of_element*2;
+    end1 = elem.length - 1;
+    end = elem.length;
+    let s = 0
+
+    function firstClone(){
+        document.getElementById("technologies-slider").style.cssText = `transform: translateX(-${width_of_element}px) `
+        start_clone1=elem[s].cloneNode(true);
+        elem[end1].after(start_clone1);
+        width_of_element = width_of_element + elem[0].offsetWidth
+        s++
+        if(s=== end1){
+            s=0
+            width_of_element=elem[0].offsetWidth
+        }
+        elem = document.querySelectorAll('.services-technologies-slider > .services-flex');
+        end1 = elem.length - 1;
+        setTimeout( ()=>{firstClone()}, 5000)
+    }
+
+
+    // top slider end
+</script>
+</body>
+
+</html>

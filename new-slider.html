@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .services-technologies-slider {
+            margin: 50px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 100%;
+            padding: 0;
+        }
+
+        .services-images {
+            max-height: 50px;
+            width: 100px;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="services-technologies-slider" id="technologies-slider">
+
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/php.svg" alt="php"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/JavaScript.svg" alt="JavaScript"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/CSS.svg" alt="CSS"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/jQuery.svg" alt="jQuery"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/HTML.svg" alt="HTML"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/php.svg" alt="php"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/JavaScript.svg" alt="JavaScript"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/CSS.svg" alt="CSS"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/jQuery.svg" alt="jQuery"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/HTML.svg" alt="HTML"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/php.svg" alt="php"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/JavaScript.svg" alt="JavaScript"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/CSS.svg" alt="CSS"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/jQuery.svg" alt="jQuery"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/HTML.svg" alt="HTML"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/php.svg" alt="php"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/JavaScript.svg" alt="JavaScript"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/CSS.svg" alt="CSS"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/jQuery.svg" alt="jQuery"/>
+    </div>
+    <div class="services-flex">
+        <img class="services-images" src="https://1c-web.by/images/technologies/HTML.svg" alt="HTML"/>
+    </div>
+
+</div>
+
+<script>
+
+    let counter = 0
+    const speedStart = 2;
+    let speed = speedStart // slider speed in seconds
+    const timeout = speed * 1000
+    let elem = document.querySelectorAll('.services-technologies-slider > .services-flex')
+    let clientScreen = document.documentElement.clientWidth
+    window.addEventListener('resize', function (event) {
+        clientScreen = document.documentElement.clientWidth
+    }, true)
+    width_of_element = elem[0].offsetWidth;
+    const maxCount = ((Math.round(clientScreen / width_of_element) - elem.length) * (-1)-1);
+
+    full_width = (width_of_element * elem.length) - clientScreen;
+    let timer = ((speed / maxCount)*1600)
+    let transition_width = width_of_element ;
+    moveSlider(transition_width)
+
+    function moveSlider(transition_width2) {
+        document.getElementById("technologies-slider").style.transition = ` ${speed}s linear`
+        document.getElementById("technologies-slider").style.transform = `translateX(-${transition_width2}px)`
+        setTimeout(() => {
+            transition_width2 += width_of_element
+            counter++
+            moveSlider(transition_width2)
+        }, timeout)
+
+        if(counter > maxCount){
+            document.getElementById("technologies-slider").style.transition = ` 0.1s linear`
+            document.getElementById("technologies-slider").style.transform = `translateX(0px)`
+            counter = -1
+            let transition_width3 = width_of_element
+             moveSlider(transition_width3)
+        }
+    }
+
+</script>
+
+</body>
+</html>
