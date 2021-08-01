@@ -13,7 +13,7 @@
             justify-content: space-between;
             min-width: 100%;
             padding: 0;
-            transition: 5s linear;
+            /*transition: 5s linear;*/
             /*transform: translateX(0);*/
         }
 
@@ -120,7 +120,7 @@
     let s = 0
     firstClone()
     function firstClone(){
-        document.getElementById("technologies-slider").style.cssText = `transform: translateX(-${width_of_element}px) `
+        document.getElementById("technologies-slider").style.cssText = `transition: ${speed}s linear;transform: translateX(-${width_of_element}px) `
         start_clone1=elem[s].cloneNode(true);
         elem[end1].after(start_clone1);
         width_of_element = width_of_element + elem[0].offsetWidth
