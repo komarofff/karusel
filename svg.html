@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+<div style="display:flex;">
+<div style="margin:30px;">
+    <svg id="svg1" viewBox="0 0 100 100" style="display: block; width: 100%;">
+        <path d="M 50,50 m 0,-48.5 a 48.5,48.5 0 1 1 0,97 a 48.5,48.5 0 1 1 0,-97" stroke="rgba(0,0,0,.25)"
+              stroke-width="3" fill-opacity="0"></path>
+        <path d="M 50,50 m 0,-48.5 a 48.5,48.5 0 1 1 0,97 a 48.5,48.5 0 1 1 0,-97" stroke="#B15632"
+              stroke-width="3" fill-opacity="0"
+              style="stroke-dasharray: 300, 300; "></path>
+    </svg>
+</div>
+
+<div style="margin:30px;">
+    <svg id="svg2" viewBox="0 0 100 100" style="display: block; width: 100%;">
+        <path d="M 50,50 m 0,-48.5 a 48.5,48.5 0 1 1 0,97 a 48.5,48.5 0 1 1 0,-97" stroke="rgba(0,0,0,.25)"
+              stroke-width="3" fill-opacity="0"></path>
+        <path d="M 50,50 m 0,-48.5 a 48.5,48.5 0 1 1 0,97 a 48.5,48.5 0 1 1 0,-97" stroke="#273957"
+              stroke-width="3" fill-opacity="0"
+              style="stroke-dasharray: 300, 300; "></path>
+    </svg>
+</div>
+</div>
+</body>
+<script>
+    /////
+    last = document.getElementById('svg1')
+    circle = last.getElementsByTagName('path')
+    target = circle[1] // цель наш круг
+    circle_length = circle[1].getTotalLength()
+    counter = circle_length
+    sector = circle_length - (circle_length / 100) * 65// количество процентов от общей длины
+    speed = 1
+    ///////
+    fill(target, counter, sector,speed)
+    /////
+    last2 = document.getElementById('svg2')
+    circle2 = last2.getElementsByTagName('path')
+    target2 = circle2[1] // цель наш круг
+    circle_length2 = circle2[1].getTotalLength()
+    counter2 = circle_length2
+    sector2 = circle_length2 - (circle_length2 / 100) * 65 // количество процентов от общей длины
+    speed2 = 1
+    ///////
+
+    fill(target2, counter2, sector2,speed2)
+
+
+    function fill(target, counter, sector,speed) {
+        setTimeout(() => {
+            target.style.strokeDashoffset = `${counter}`
+            if (counter > sector) {
+                counter -= speed // скорость заполнения
+            }
+            fill(target, counter, sector,speed)
+        }, 1)
+    }
+</script>
+<script>
+
+
+</script>
+
+</html>
